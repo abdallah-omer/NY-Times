@@ -1,0 +1,15 @@
+import 'package:dio/dio.dart';
+
+class AppInterceptors extends Interceptor {
+  static const String contentType = 'Content-Type';
+  static const String applicationJson = 'application/json';
+  static const String authorization = 'Authorization';
+  static const String token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlcyI6WyJFbXBsb3llZSBVc2VyIl0sImlkIjoyMjU5NSwiZnVsbF9uYW1lIjoiXHUwNjM5XHUwNjI4XHUwNjJmXHUwNjI3XHUwNjQ0XHUwNjQ0XHUwNjQ3IFx1MDYyN1x1MDYyOFx1MDYzMVx1MDYyN1x1MDY0N1x1MDY0YVx1MDY0NSBcdTA2MjdcdTA2NDRcdTA2MzVcdTA2NDJcdTA2NGFcdTA2NDciLCJlbWFpbCI6InNvcWloQG1hcm4uaW8iLCJtb2JpbGUiOiI5NjY1NDYzNTg5MjIiLCJpbWFnZSI6Imh0dHBzOi8vc3RhZ2luZy1tYXJuLXB5dGhvbi5zMy5hbWF6b25hd3MuY29tL1JNMEJTQ0pJOEYtYjdiZDI0MWMtNTMzZS00YzZjLWI0MmEtYTAxODIxMmQzMmZkLmpwZWciLCJuaWNrbmFtZSI6Ilx1MDYzOVx1MDYyOFx1MDYyZlx1MDYyN1x1MDY0NFx1MDY0NFx1MDY0NyIsInVzZXJfaWQiOjIyOTI3LCJkZXZpY2VfaWQiOjIxLCJsYW5nIjoiYXIiLCJ1dWlkIjoiMzI4OUQxOTYtRTRCRS00RjE3LThCOEMtMDQ4NjlDNjcyM0EwIiwicGxhdGZvcm0iOiJpT1MiLCJhcHBfdmVyc2lvbiI6IjEuMS40IiwiaXNfdGVtcF90b2tlbiI6ZmFsc2UsImFwcGxpY2FudF9pZCI6Mjg1ODM1LCJleHAiOjE2OTUxNDMxNDJ9.pgpv4cB1_8lo84wffhPCRTMo6LZtVTvYGfj6yerIjL0';
+
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    options.headers[contentType] = applicationJson;
+    options.headers[authorization] = token;
+    super.onRequest(options, handler);
+  }
+}
