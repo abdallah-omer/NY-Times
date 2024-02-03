@@ -58,22 +58,27 @@ class NYTimeScreen extends StatelessWidget {
             ),
             body: SafeArea(
               bottom: false,
-              child: ListView.builder(
-                itemBuilder: (context, index) => InkWell(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => NYTimeDetailsScreen(
-                        jobId: cubit.nyTimes[index].id,
+              child: state is NYTimesLoadingState
+                  ? const Center(
+                      child: CircularProgressIndicator(
+                      color: Colors.blue,
+                    ))
+                  : ListView.builder(
+                      itemBuilder: (context, index) => InkWell(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => NYTimeDetailsScreen(
+                              jobId: cubit.nyTimes[index].id,
+                            ),
+                          ),
+                        ),
+                        child: NYTimeItemWidget(
+                          nyTimesEntity: cubit.nyTimes[index],
+                        ),
                       ),
+                      itemCount: cubit.nyTimes.length,
                     ),
-                  ),
-                  child: NYTimeItemWidget(
-                    nyTimesEntity: cubit.nyTimes[index],
-                  ),
-                ),
-                itemCount: cubit.nyTimes.length,
-              ),
             ),
           );
         },

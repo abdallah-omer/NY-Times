@@ -44,18 +44,20 @@ class NYTimeDetailsScreen extends StatelessWidget {
               ),
             ),
             body: SafeArea(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: HtmlWidget(
-                    cubit.nyTimeEntity?.description ?? '',
-                    textStyle: const TextStyle(
-                      color: ColorConstants.black,
-                      fontSize: 18.0,
+              child: state is NYTimeDetailsLoadingState
+                  ? const Center(child: CircularProgressIndicator(color: Colors.blue,))
+                  : SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: HtmlWidget(
+                          cubit.nyTimeEntity?.description ?? '',
+                          textStyle: const TextStyle(
+                            color: ColorConstants.black,
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ),
             ),
           );
         },
